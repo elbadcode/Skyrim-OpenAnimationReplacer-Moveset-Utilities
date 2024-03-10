@@ -26,7 +26,9 @@ def modify_conditions_files():
                 if os.path.exists(conditions_file_path):
                      with open(conditions_file_path, "r+") as conditions_file:
                         content = conditions_file.read()
-                        if content.rstrip()[-1:] == ")":  # Check if the last non-whitespace character is ')'
+                        if content.rstrip().endswith("Random(0.85)"):
+                            break
+                        elif content.rstrip()[-1:] == ")":  # Check if the last non-whitespace character is ')'
                             conditions_file.write(" AND \nRandom(0.85)")
                         elif content.rstrip().endswith("AND") or content.rstrip().endswith("OR"):
                             conditions_file.write("\nRandom(0.85)")  # Add newline if not following ')'
