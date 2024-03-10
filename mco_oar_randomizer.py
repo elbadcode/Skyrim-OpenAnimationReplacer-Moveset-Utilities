@@ -14,9 +14,10 @@ def modify_config_files():
         for file in files:
             if file.startswith("mco_") and file.endswith(".hkx"):
                 config_file_path = os.path.join(root, "config.json")
-                create_backup(config_file_path)
-                config_file_path = config_file_path.lower()
+                
                 if os.path.exists(config_file_path):
+                    create_backup(config_file_path)
+                    config_file_path = config_file_path.lower()
                     with open(config_file_path, "r+") as config_file:  # Open in read/write mode
                         config_data = json.load(config_file)
 
